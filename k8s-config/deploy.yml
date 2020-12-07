@@ -23,7 +23,7 @@ spec:
         app: microservices-lab
     spec:
       containers:
-      - image: puzzle/microservices-lab:latest
+      - image: quay.io/puzzle/microservices-lab:latest
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
