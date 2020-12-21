@@ -1,8 +1,15 @@
 ---
-title: "1. Getting Started"
-weight: 1
-sectionnumber: 1
+title: "2.1 Introduction"
+linkTitle: "2.1 Introduction"
+weight: 210
+sectionnumber: 2.1
+description: >
+  Overview of environment and services used in this lab.
 ---
+
+
+![Environment](../monolith.png)
+
 
 ## Title 1
 

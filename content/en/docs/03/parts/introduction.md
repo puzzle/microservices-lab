@@ -1,8 +1,15 @@
 ---
-title: "1. Getting Started"
-weight: 1
-sectionnumber: 1
+title: "3.1 Introduction"
+linkTitle: "3.1 Introduction"
+weight: 310
+sectionnumber: 3.1
+description: >
+  Overview of environment and microservices used in this lab.
 ---
+
+
+![Environment](../rest.png)
+
 
 ## Title 1
 

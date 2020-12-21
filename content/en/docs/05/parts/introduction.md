@@ -1,8 +1,15 @@
 ---
-title: "1. Getting Started"
-weight: 1
-sectionnumber: 1
+title: "5.1 Introduction"
+linkTitle: "5.1 Introduction"
+weight: 510
+sectionnumber: 5.1
+description: >
+  Overview of environment and microservices used in this lab.
 ---
+
+![Environment](../outbox.png)
+
+
 
 ## Title 1
 
