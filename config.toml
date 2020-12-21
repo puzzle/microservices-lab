@@ -76,6 +76,7 @@ url = "https://www.puzzle.ch"
 
 copyright = "Puzzle ITC GmbH"
 github_repo = "https://github.com/puzzle/microservices-lab"
+github_branch = "main"
 
 enabledModule = "base"
 
