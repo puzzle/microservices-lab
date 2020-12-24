@@ -5,5 +5,10 @@ sectionnumber: 4
 ---
 
 
-## Kafka Messaging
+## Introduction
+
+
+## Lab Overview
+
+![Environment](kafka-messaging.png)
 

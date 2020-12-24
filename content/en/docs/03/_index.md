@@ -4,6 +4,9 @@ weight: 1
 sectionnumber: 3
 ---
 
-## RESTful Microservices
+## Introduction
 
-![Environment](../rest.png)
+
+## Lab Overview
+
+![Environment](rest.png)

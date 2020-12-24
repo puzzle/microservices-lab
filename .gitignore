@@ -11,3 +11,4 @@ public
 .env
 resources
 .idea/
+.vscode
