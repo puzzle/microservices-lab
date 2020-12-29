@@ -1,0 +1,130 @@
+version: '3'
+
+services:
+  order-db:
+    image: quay.io/postgres/postgres:11
+    hostname: order-db
+    container_name: debezium-order-db
+    volumes:
+      - debezium-order-db-data:/var/lib/postgresql/data/
+    networks:
+      - debezium
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - 5432:5432
+
+  stock-db:
+    image: quay.io/postgres/postgres:11
+    hostname: stock-db
+    container_name: debezium-stock-db
+    volumes:
+      - debezium-stock-db-data:/var/lib/postgresql/data/
+    networks:
+      - debezium
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - 5433:5432
+
+  viewer:    
+    image: quay.io/puzzle/microservices-lab-debezium-viewer:latest    
+    hostname: viewer
+    container_name: debezium-viewer
+    ports:    
+      - 8082:8080
+    networks:    
+      - debezium
+    depends_on:    
+      - kafka
+      - connect
+    environment:    
+      - QUARKUS_HTTP_PORT=8080    
+
+  zookeeper:
+    image: quay.io/debezium/zookeeper:1.4
+    hostname: zookeeper
+    container_name: debezium-zookeeper
+    networks:
+      - debezium
+    ports:
+     - 2181:2181
+     - 2888:2888
+     - 3888:3888
+
+  kafka:
+    image: quay.io/debezium/kafka:1.4
+    hostname: kafka
+    container_name: debezium-kafka
+    ports:
+     - 9092:9092
+    networks:
+      - debezium
+    depends_on:
+     - zookeeper
+    environment:
+     - ZOOKEEPER_CONNECT=zookeeper:2181
+
+  grafana:
+    image: docker.io/grafana/grafana:7.3.6
+    hostname: grafana
+    container_name: debezium-grafana
+    ports:
+      - 3000:3000
+    networks:
+      - debezium
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./config/grafana/dashboards/:/opt/dashboards
+      - ./config/grafana/custom.yaml:/etc/grafana/provisioning/dashboards/custom.yaml
+      - ./config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+
+  prometheus:
+    image: quay.io/prometheus/prometheus:v2.22.2
+    hostname: prometheus
+    container_name: debezium-prometheus
+    ports:
+      - 9090:9090
+    networks:
+      - debezium
+    volumes:
+      - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./config/prometheus/alert.rules:/etc/prometheus/alert.rules
+
+  alertmanager:
+    image: quay.io/prometheus/alertmanager:v0.21.0
+    hostname: alertmanager
+    container_name: debezium-alertmanager
+    ports:
+      - 9093:9093
+    networks:
+      - debezium
+    volumes:
+      - ./config/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yml
+
+  jaeger:
+    image: quay.io/jaegertracing/all-in-one:1.21.0
+    hostname: jaeger
+    container_name: debezium-jaeger
+    networks:
+      - debezium
+    ports:
+      - 5775:5775/udp
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 14268:14268
+      - 16686:16686
+
+volumes:
+  debezium-order-db-data:
+  debezium-stock-db-data:
+
+networks:
+  debezium:
+    driver: bridge
+    ipam:
+      driver: default

@@ -83,6 +83,17 @@ enabledModule = "base"
 # Enable Lunr.js offline search
 offlineSearch = true
 
+# define base url and path for used code
+lab_git_repo = "https://github.com/puzzle/microservices-lab"
+lab_code_basedir = "/code/"
+
+solution_git_repo = "https://github.com/puzzle/microservices-mastery"
+solution_code_basedir = "/"
+
+puzzle_docker_repo = "quay.io/puzzle"
+image_prefix = "microservices-lab-"
+debezium_docker_repo = "quay.io/debezium"
+
 [params.ui]
 # Enable to show the side bar menu in its compact state.
 sidebar_menu_compact = false

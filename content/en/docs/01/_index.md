@@ -4,17 +4,25 @@ weight: 1
 sectionnumber: 1
 ---
 
-## Title 1
+## Introduction
 
-{{% alert title="Note" color="primary" %}}
-Sample Note
-{{% /alert %}}
 
-Sample code block:
-```bash
-echo "Hello World!"
-```
+## Source-Code for Labs
 
-{{< onlyWhen variant1 >}}
-This is only rendered when `enabledModule` in `config.toml` contains `variant1`
-{{< /onlyWhen >}}
+Since writing the labs from scratch would take to much time we'll provide source-code for each lab to start with.
+
+* Lab Source Git Repository: {{% siteparam "lab_git_repo" %}}
+* Lab Base Directory: {{% siteparam "lab_code_basedir" %}}
+
+We expect you to checkout this repository and switch to the corresponding lab source-code. The exact name of the source-code is provided in the Getting Started of each lab.
+
+If you like to commit your changes feel free to fork this repository in your own space. If so, remember to use your own copy instead of the referenced repository whenever we link to it.
+
+
+## Complete Solution Repository
+
+We also provide solution code for all labs.
+
+* Solution Git Repository: {{% siteparam "solution_git_repo" %}}
+* Solution Base Directory: {{% siteparam "solution_code_basedir" %}}
+
