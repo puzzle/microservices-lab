@@ -1,7 +1,0 @@
-{{- $paramName := (.Get 0) -}}
-{{- $params := .Page.Params -}}
-{{- with $paramName -}}
-    {{- with $params -}}
-        {{- index . (lower $paramName) -}}
-    {{- end -}}
-{{- end -}}
