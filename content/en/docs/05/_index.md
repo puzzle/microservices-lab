@@ -31,9 +31,9 @@ Databases usually write their changes to a write-ahead logfile (WAL) before actu
 
 Debezium makes use of this by reading the WAL to detect changes in the database. This technique is called Change-Data-Capture (CDC)[^3] and is a widely used pattern to integrate legacy systems and applications.
 
-The outbox pattern specifies that beside our business data there will also be an event-record which is written to the dedicated `outboxevents` table. As that will take place in the same local transaction, we have strong guarantee that our data is either written or rolled-back completely including the event-record.
+The outbox pattern specifies that beside our business data there will also be an event-record which is written to the dedicated `outboxevent` table. As that will take place in the same local transaction, we have strong guarantee that our data is either written or rolled-back completely including the event-record.
 
-In Kafka Connect our Debezium connector will monitor the WAL log and watch out for INSERT to the `outboxevents` table. Finding a new record in the WAL log Debezium will generate a Kafka Message to a designated topic. Debezium provides an EventRouter which is implemented as Kafka Connect single message transformation. This EventRouter will form our actual Kafka Message using the information from the `outboxevents` table.
+In Kafka Connect our Debezium connector will monitor the WAL log and watch out for INSERT to the `outboxevent` table. Finding a new record in the WAL log Debezium will generate a Kafka Message to a designated topic. Debezium provides an EventRouter which is implemented as Kafka Connect single message transformation. This EventRouter will form our actual Kafka Message using the information from the `outboxevent` table.
 
 Our application will therefore only consume Messages from Kafka topics.
 
@@ -44,7 +44,7 @@ This integration pattern is highly decoupled. Either the Kafka consumers in our 
 
 ## Lab Overview
 
-At the end of this lab our environment is expected to look like this. In comparison to the last lab we will introduce the Kafka connect service with our debezium PostgreSQL connector. Further we will create additional `outboxevents` tables and our applications will stop to write to Kafka directly. We will still use saga choreography as in the previous lab.
+At the end of this lab our environment is expected to look like this. In comparison to the last lab we will introduce the Kafka connect service with our debezium PostgreSQL connector. Further we will create additional `outboxevent` tables and our applications will stop to write to Kafka directly. We will still use saga choreography as in the previous lab.
 
 ![Environment](debezium.png)
 

@@ -85,11 +85,19 @@ offlineSearch = true
 
 # define base url and path for used code
 lab_git_repo = "https://github.com/puzzle/microservices-lab"
+lab_rawgit_repo = "https://raw.githubusercontent.com/puzzle/microservices-lab/main"
 lab_code_basedir = "/code/"
 
 solution_git_repo = "https://github.com/puzzle/microservices-mastery"
 solution_code_basedir = "/"
 
+# specify folder structure
+folder_monolith = "monolith"
+folder_restful = "rest"
+folder_kafka = "kafka"
+folder_debezium = "debezium"
+
+# Container repos and naming
 puzzle_docker_repo = "quay.io/puzzle"
 image_prefix = "microservices-lab-"
 debezium_docker_repo = "quay.io/debezium"
