@@ -12,7 +12,7 @@ public class StockCompleteEvent implements ExportedEvent<String, JsonNode> {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
-    private static final String TYPE = "";
+    private static final String AGGREGATE_TYPE = "";
     private static final String EVENT_TYPE = "";
 
     private final UUID id;
@@ -34,7 +34,7 @@ public class StockCompleteEvent implements ExportedEvent<String, JsonNode> {
 
     @Override
     public String getAggregateType() {
-        return TYPE;
+        return AGGREGATE_TYPE;
     }
 
     @Override

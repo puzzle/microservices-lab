@@ -1,10 +1,8 @@
 package ch.puzzle.mm.debezium.event.entity;
 
-import ch.puzzle.mm.debezium.order.entity.ArticleOrder;
 import ch.puzzle.mm.debezium.order.entity.ShopOrder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.debezium.outbox.quarkus.ExportedEvent;
 
@@ -15,7 +13,7 @@ public class OrderCreatedEvent implements ExportedEvent<String, JsonNode> {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
-    private static final String TYPE = "";
+    private static final String AGGREGATE_TYPE = "";
     private static final String EVENT_TYPE = "";
 
     private final UUID id;
@@ -37,7 +35,7 @@ public class OrderCreatedEvent implements ExportedEvent<String, JsonNode> {
 
     @Override
     public String getAggregateType() {
-        return TYPE;
+        return AGGREGATE_TYPE;
     }
 
     @Override

@@ -30,7 +30,6 @@ public class KafkaEventConsumer {
     @Inject
     Tracer tracer;
 
-    @Incoming("stock")
     public CompletionStage<Void> onMessage(KafkaRecord<String, String> message) {
         return CompletableFuture.runAsync(() -> {
             try (final Scope span = tracer.buildSpan("handle-stock-message").asChildOf(TracingKafkaUtils.extractSpanContext(message.getHeaders(), tracer)).startActive(true)) {

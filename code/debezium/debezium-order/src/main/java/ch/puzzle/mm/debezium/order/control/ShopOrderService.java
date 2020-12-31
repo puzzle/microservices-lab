@@ -23,8 +23,11 @@ public class ShopOrderService {
     }
 
     public ShopOrder createOrder(ShopOrderDTO shopOrderDTO) {
-        // TODO: implementation
+        // TODO: implementation - create ArticleOrder list
 
+        // TODO: implementation - create new shopOrder
+
+        // TODO: fire OrderCreatedEvent
         return new ShopOrder();
     }
 
