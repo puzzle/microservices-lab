@@ -15,130 +15,110 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
+  "iteration": 1609543549330,
   "links": [],
   "panels": [
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
+      "collapsed": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 1,
+        "w": 24,
         "x": 0,
         "y": 0
       },
-      "hiddenSeries": false,
-      "id": 14,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
+      "id": 12,
+      "panels": [],
+      "title": "Streaming",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
         "show": true,
-        "total": false,
-        "values": false
+        "thresholdLabels": false,
+        "thresholdMarkers": true
       },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 0,
+        "y": 1
       },
-      "percentage": false,
-      "pluginVersion": "7.3.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "id": 14,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
       "targets": [
         {
-          "expr": "application_ft_ch_puzzle_monolith_stock_control_ArticleStockService_orderArticle_circuitbreaker_open_total",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "open",
+          "expr": "debezium_metrics_millisecondssincelastevent{plugin=\"$connector_type\",name=\"$connector_name\",context=\"streaming\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A"
-        },
-        {
-          "expr": "application_ft_ch_puzzle_monolith_stock_control_ArticleStockService_orderArticle_circuitbreaker_closed_total",
-          "interval": "",
-          "legendFormat": "closed",
-          "refId": "B"
-        },
-        {
-          "expr": "application_ft_ch_puzzle_monolith_stock_control_ArticleStockService_orderArticle_circuitbreaker_halfOpen_total",
-          "interval": "",
-          "legendFormat": "half-open",
-          "refId": "C"
         }
       ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Stock Circuit Breaker Status",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
+      "thresholds": "10000,60000",
+      "title": "Time since last event",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
         }
       ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "valueName": "current"
     },
     {
       "aliasColors": {},
@@ -155,10 +135,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 0
+        "x": 3,
+        "y": 1
       },
       "hiddenSeries": false,
       "id": 16,
@@ -173,13 +153,14 @@
       },
       "lines": true,
       "linewidth": 1,
+      "links": [],
       "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
-      "pointradius": 2,
+      "pluginVersion": "7.3.6",
+      "pointradius": 5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
@@ -188,35 +169,27 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "application_ft_ch_puzzle_monolith_stock_control_ArticleStockService_orderArticle_invocations_total",
+          "expr": "debezium_metrics_totalnumberofeventsseen",
+          "format": "time_series",
           "interval": "",
-          "legendFormat": "invocations total",
+          "intervalFactor": 1,
+          "legendFormat": "Total events received",
           "refId": "A"
         },
         {
-          "expr": "application_ft_ch_puzzle_monolith_stock_control_ArticleStockService_orderArticle_circuitbreaker_callsFailed_total",
+          "expr": "debezium_metrics_numberofeventsskipped",
+          "format": "time_series",
           "interval": "",
-          "legendFormat": "failed",
+          "intervalFactor": 1,
+          "legendFormat": "Events skipped",
           "refId": "B"
-        },
-        {
-          "expr": "application_ft_ch_puzzle_monolith_stock_control_ArticleStockService_orderArticle_circuitbreaker_callsPrevented_total",
-          "interval": "",
-          "legendFormat": "prevented",
-          "refId": "C"
-        },
-        {
-          "expr": "application_ft_ch_puzzle_monolith_stock_control_ArticleStockService_orderArticle_circuitbreaker_callsSucceeded_total",
-          "interval": "",
-          "legendFormat": "succeeded",
-          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Circuit Breaker Invocations",
+      "title": "Event count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -254,250 +227,785 @@
       }
     },
     {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#d44a3a",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 6
+      },
+      "id": 18,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "debezium_metrics_connected{plugin=\"$connector_type\",name=\"$connector_name\",context=\"streaming\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "0,1",
+      "title": "Connected",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "No",
+          "value": "0"
+        },
+        {
+          "op": "=",
+          "text": "Yes",
+          "value": "1"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 10
       },
       "id": 10,
       "panels": [],
-      "title": "Order Counters",
+      "title": "Snapshot",
       "type": "row"
     },
     {
-      "datasource": null,
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
+          "custom": {}
         },
         "overrides": []
       },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
-        "h": 7,
-        "w": 4,
+        "h": 2,
+        "w": 3,
         "x": 0,
-        "y": 9
+        "y": 11
       },
-      "id": 6,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
+      "id": 25,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
         },
-        "textMode": "auto"
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
       },
-      "pluginVersion": "7.3.3",
+      "tableColumn": "",
       "targets": [
         {
-          "expr": "application_monolith_order_create_request_total",
-          "instant": true,
+          "expr": "debezium_metrics_totaltablecount{plugin=\"$connector_type\",name=\"$connector_name\",context=\"snapshot\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Total",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "title": "Table count",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 3,
+        "y": 11
+      },
+      "id": 28,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "debezium_metrics_remainingtablecount{plugin=\"$connector_type\",name=\"$connector_name\",context=\"snapshot\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Remaining",
+          "refId": "B"
+        }
+      ],
+      "thresholds": "",
+      "title": "Remaining tables",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#d44a3a",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 6,
+        "y": 11
+      },
+      "id": 27,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "debezium_metrics_snapshotrunning{plugin=\"$connector_type\",name=\"$connector_name\",context=\"snapshot\"}",
+          "format": "time_series",
           "interval": "",
+          "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "# order created",
-      "type": "stat"
+      "thresholds": "",
+      "title": "Running",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "No",
+          "value": "0"
+        },
+        {
+          "op": "=",
+          "text": "Yes",
+          "value": "1"
+        }
+      ],
+      "valueName": "avg"
     },
     {
-      "datasource": null,
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#d44a3a",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
+          "custom": {}
         },
         "overrides": []
       },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
-        "h": 7,
-        "w": 4,
-        "x": 4,
-        "y": 9
+        "h": 2,
+        "w": 3,
+        "x": 9,
+        "y": 11
       },
-      "id": 8,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
+      "id": 30,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
         },
-        "textMode": "auto"
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
       },
-      "pluginVersion": "7.3.3",
+      "tableColumn": "",
       "targets": [
         {
-          "expr": "application_monolith_order_create_success_total",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
+          "expr": "debezium_metrics_snapshotcompleted{plugin=\"$connector_type\",name=\"$connector_name\",context=\"snapshot\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "# order success",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 4,
-        "x": 8,
-        "y": 9
-      },
-      "id": 4,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.3.3",
-      "targets": [
+      "thresholds": "",
+      "title": "Completed",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
         {
-          "expr": "application_monolith_stock_create_total",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "No",
+          "value": "0"
+        },
+        {
+          "op": "=",
+          "text": "Yes",
+          "value": "1"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "# stock created",
-      "type": "stat"
+      "valueName": "avg"
     },
     {
-      "datasource": null,
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#d44a3a",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
+          "custom": {}
         },
         "overrides": []
       },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
-        "h": 7,
-        "w": 4,
+        "h": 2,
+        "w": 3,
         "x": 12,
-        "y": 9
+        "y": 11
       },
-      "id": 2,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
+      "id": 29,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
         },
-        "textMode": "auto"
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
       },
-      "pluginVersion": "7.3.3",
+      "tableColumn": "",
       "targets": [
         {
-          "expr": "application_monolith_stock_update_total",
-          "instant": true,
+          "expr": "debezium_metrics_snapshotaborted{plugin=\"$connector_type\",name=\"$connector_name\",context=\"snapshot\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "title": "Aborted",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        },
+        {
+          "op": "=",
+          "text": "No",
+          "value": "0"
+        },
+        {
+          "op": "=",
+          "text": "Yes",
+          "value": "1"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 13
+      },
+      "hiddenSeries": false,
+      "id": 26,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.6",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "debezium_metrics_totalnumberofeventsseen{plugin=\"$connector_type\",name=\"$connector_name\",context=\"snapshot\"}",
+          "format": "time_series",
           "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Total events received",
+          "refId": "A"
+        },
+        {
+          "expr": "debezium_metrics_numberofeventsskipped{plugin=\"$connector_type\",name=\"$connector_name\",context=\"snapshot\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Events skipped",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Event count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "columns": [],
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 13
+      },
+      "id": 22,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "align": "auto",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "Table",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "table",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Rows",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "Value",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "debezium_metrics_rowsscanned{plugin=\"$connector_type\",name=\"$connector_name\"}",
+          "format": "table",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "# stock updates",
-      "type": "stat"
+      "title": "Rows scanned",
+      "transform": "table",
+      "type": "table-old"
     },
     {
       "collapsed": false,
@@ -506,28 +1014,341 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 22
       },
-      "id": 12,
+      "id": 20,
       "panels": [],
-      "title": "Fault Tolerance",
+      "title": "JVM",
       "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 23
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.6",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "jvm_memory_bytes_used{area='heap'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Used",
+          "refId": "A"
+        },
+        {
+          "expr": "jvm_memory_bytes_max{area='heap'}",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Maximum",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Heap Memory",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 23
+      },
+      "hiddenSeries": false,
+      "id": 24,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.6",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "jvm_threads_current",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Running",
+          "refId": "A"
+        },
+        {
+          "expr": "jvm_threads_peak",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Maximum",
+          "refId": "B"
+        },
+        {
+          "expr": "jvm_threads_started_total",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Started in total",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Threads",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
-  "refresh": "5s",
+  "refresh": "",
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "postgres",
+          "value": "postgres"
+        },
+        "datasource": "prometheus",
+        "definition": "",
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Connector Type",
+        "multi": false,
+        "name": "connector_type",
+        "options": [
+          {
+            "selected": true,
+            "text": "postgres",
+            "value": "postgres"
+          }
+        ],
+        "query": "debezium_metrics_totalnumberofeventsseen",
+        "refresh": 0,
+        "regex": "/.*plugin=\"([^\"]+)\".*/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "order-db",
+          "value": "order-db"
+        },
+        "datasource": "prometheus",
+        "definition": "",
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Connector Name",
+        "multi": false,
+        "name": "connector_name",
+        "options": [
+          {
+            "selected": true,
+            "text": "order-db",
+            "value": "order-db"
+          },
+          {
+            "selected": false,
+            "text": "stock-db",
+            "value": "stock-db"
+          }
+        ],
+        "query": "debezium_metrics_totalnumberofeventsseen{plugin=\"$connector_type\"}",
+        "refresh": 0,
+        "regex": "/.*name=\"([^\"]+)\".*/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
-  "timepicker": {},
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
   "timezone": "",
-  "title": "Kafka Dashboard",
-  "uid": "xz2MGAoGk",
-  "version": 1
+  "title": "Debezium",
+  "uid": "7HrWpmEiz",
+  "version": 5
 }

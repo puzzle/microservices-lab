@@ -42,7 +42,7 @@ services:
       - stock-db
     environment:
       - QUARKUS_HTTP_PORT=8080
-      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://stock-db:5432/admin
+      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:tracing:postgresql://stock-db:5432/admin
 
   viewer:    
     image: quay.io/puzzle/microservices-lab-debezium-viewer:latest    
@@ -70,7 +70,7 @@ services:
      - 3888:3888
 
   kafka:
-    image: quay.io/debezium/kafka:1.4
+    image: quay.io/puzzle/microservices-lab-debezium-kafka:latest
     hostname: kafka
     container_name: debezium-kafka
     ports:
