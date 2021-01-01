@@ -25,15 +25,13 @@ public class KafkaEventConsumer {
     private static final Logger logger = LoggerFactory.getLogger(KafkaEventConsumer.class);
 
     @Inject
-    StockEventHandler stockEventHandler;
-
-    @Inject
     Tracer tracer;
 
     public CompletionStage<Void> onMessage(KafkaRecord<String, String> message) {
         return CompletableFuture.runAsync(() -> {
             try (final Scope span = tracer.buildSpan("handle-stock-message").asChildOf(TracingKafkaUtils.extractSpanContext(message.getHeaders(), tracer)).startActive(true)) {
-                // TODO: implementation - message handling
+                // TODO: implementation - read id, eventType from headers
+                // TODO: implementation - delegate message to StockEventHandler
             } catch (Exception e) {
                 logger.error("Error while preparing articlestock", e);
                 throw e;

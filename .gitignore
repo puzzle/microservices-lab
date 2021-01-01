@@ -9,7 +9,7 @@ builds
 package-lock.json
 public
 .env
-resources
+/resources
 .idea/
 .vscode
 *.iml

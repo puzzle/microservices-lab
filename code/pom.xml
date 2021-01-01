@@ -10,6 +10,5 @@
 
   <modules>
     <module>debezium/debezium-order</module>
-    <module>debezium/debezium-stock</module>
   </modules>
 </project>

@@ -1,0 +1,252 @@
+# List Connectors
+# curl --request GET
+#  --url http://localhost:8083/connectors
+#  --header 'Accept: application/json'
+GET http://localhost:8083/connectors
+Accept: application/json
+
+###
+
+
+
+# Install Order Connector
+# curl --request POST
+#  --url http://localhost:8083/connectors
+#  --header 'Accept: application/json'
+#  --header 'Content-Type: application/json'
+#  --data '{
+#    "name": "order-events",
+#    "config": {
+#      "connector.class" : "io.debezium.connector.postgresql.PostgresConnector",
+#      "tasks.max" : "1",
+#      "database.hostname" : "order-db",
+#      "database.port" : "5432",
+#      "database.user" : "admin",
+#      "database.password" : "1234",
+#      "database.dbname" : "admin",
+#      "database.server.name" : "order-db",
+#      "schema.include.list" : "public",
+#      "table.include.list" : "public.outboxevent",
+#      "tombstones.on.delete" : "false",
+#      "transforms" : "outbox,topiccase",
+#      "transforms.outbox.type" : "io.debezium.transforms.outbox.EventRouter",
+#			"transforms.outbox.route.by.field" : "type",
+#			"transforms.outbox.route.topic.replacement" : "order-${routedByValue}-events",
+#			"transforms.outbox.table.field.event.timestamp" : "timestamp",
+#			"transforms.outbox.table.fields.additional.placement" : "type:header:eventType",
+#			"transforms.topiccase.type" : "ch.puzzle.mm.debezium.connect.smt.ChangeTopicCase",
+#			"transforms.topiccase.toCase" : "lower"
+#    }
+#}'
+POST http://localhost:8083/connectors
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "order-events",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "order-db",
+    "database.port": "5432",
+    "database.user": "admin",
+    "database.password": "1234",
+    "database.dbname": "admin",
+    "database.server.name": "order-db",
+    "schema.include.list": "public",
+    "table.include.list": "public.outboxevent",
+    "tombstones.on.delete": "false",
+    "transforms": "outbox,topiccase",
+    "transforms.outbox.type": "io.debezium.transforms.outbox.EventRouter",
+    "transforms.outbox.route.by.field": "type",
+    "transforms.outbox.route.topic.replacement": "order-${routedByValue}-events",
+    "transforms.outbox.table.field.event.timestamp": "timestamp",
+    "transforms.outbox.table.fields.additional.placement": "type:header:eventType",
+    "transforms.topiccase.type": "ch.puzzle.mm.debezium.connect.smt.ChangeTopicCase",
+    "transforms.topiccase.toCase": "lower"
+  }
+}
+
+###
+
+# Install Stock Connector
+# curl --request POST
+#  --url http://localhost:8083/connectors
+#  --header 'Accept: application/json'
+#  --header 'Content-Type: application/json'
+#  --data '{
+#    "name": "stock-events",
+#    "config": {
+#      "connector.class" : "io.debezium.connector.postgresql.PostgresConnector",
+#      "tasks.max" : "1",
+#      "database.hostname" : "stock-db",
+#      "database.port" : "5432",
+#      "database.user" : "admin",
+#      "database.password" : "1234",
+#      "database.dbname" : "admin",
+#      "database.server.name" : "stock-db",
+#      "schema.include.list" : "public",
+#      "table.include.list" : "public.outboxevent",
+#      "tombstones.on.delete" : "false",
+#      "transforms" : "outbox,topiccase",
+#      "transforms.outbox.type" : "io.debezium.transforms.outbox.EventRouter",
+#			"transforms.outbox.route.by.field" : "type",
+#			"transforms.outbox.route.topic.replacement" : "stock-${routedByValue}-events",
+#			"transforms.outbox.table.field.event.timestamp" : "timestamp",
+#			"transforms.outbox.table.fields.additional.placement" : "type:header:eventType",
+#			"transforms.topiccase.type" : "ch.puzzle.mm.debezium.connect.smt.ChangeTopicCase",
+#			"transforms.topiccase.toCase" : "lower"
+#    }
+#}'
+POST http://localhost:8083/connectors
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "stock-events",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "stock-db",
+    "database.port": "5432",
+    "database.user": "admin",
+    "database.password": "1234",
+    "database.dbname": "admin",
+    "database.server.name": "stock-db",
+    "schema.include.list": "public",
+    "table.include.list": "public.outboxevent",
+    "tombstones.on.delete": "false",
+    "transforms": "outbox,topiccase",
+    "transforms.outbox.type": "io.debezium.transforms.outbox.EventRouter",
+    "transforms.outbox.route.by.field": "type",
+    "transforms.outbox.route.topic.replacement": "stock-${routedByValue}-events",
+    "transforms.outbox.table.field.event.timestamp": "timestamp",
+    "transforms.outbox.table.fields.additional.placement": "type:header:eventType",
+    "transforms.topiccase.type": "ch.puzzle.mm.debezium.connect.smt.ChangeTopicCase",
+    "transforms.topiccase.toCase": "lower"
+  }
+}
+
+###
+
+# Create new Order - Expect COMPLETE
+# curl --request POST
+#  --url http://localhost:8080/shop-orders
+#  --header 'Content-Type: application/json'
+#  --data '{
+#	"articleOrders" : [
+#		{
+#			"articleId" : 1,
+#			"amount" : 3
+#		}
+#	]
+#}'
+POST http://localhost:8080/shop-orders
+Content-Type: application/json
+
+{
+  "articleOrders": [
+    {
+      "articleId": 1,
+      "amount": 9
+    }
+  ]
+}
+
+
+###
+
+# Create another order - Expect Out of Stock
+# curl --request POST
+#  --url http://localhost:8080/shop-orders
+#  --header 'Content-Type: application/json'
+#  --data '{
+#	"articleOrders" : [
+#		{
+#			"articleId" : 1,
+#			"amount" : 3
+#		}
+#	]
+#}'
+POST http://localhost:8080/shop-orders
+Content-Type: application/json
+
+{
+  "articleOrders": [
+    {
+      "articleId": 1,
+      "amount": 3
+    }
+  ]
+}
+
+###
+
+# Cancel Order
+# curl --request POST
+#  --url http://localhost:8080/shop-orders/100000/status
+#  --header 'Content-Type: application/json'
+#  --data '{
+#	"status" : "CANCELLED"
+#}'
+POST http://localhost:8080/shop-orders/100000/status
+Content-Type: application/json
+
+{
+  "status": "CANCELLED"
+}
+
+###
+
+# Create another order - Expect COMPLETE
+# curl --request POST
+#  --url http://localhost:8080/shop-orders
+#  --header 'Content-Type: application/json'
+#  --data '{
+#	"articleOrders" : [
+#		{
+#			"articleId" : 1,
+#			"amount" : 3
+#		}
+#	]
+#}'
+POST http://localhost:8080/shop-orders
+Content-Type: application/json
+
+{
+  "articleOrders": [
+    {
+      "articleId": 1,
+      "amount": 3
+    }
+  ]
+}
+
+###
+
+# Get Orders
+# curl --request GET
+#  --url http://localhost:8080/shop-orders
+GET http://localhost:8080/shop-orders
+
+###
+
+# Delete Order Connector
+# curl --request DELETE
+#  --url http://localhost:8083/connectors/order-events
+#  --header 'Accept: application/json'
+DELETE http://localhost:8083/connectors/order-events
+Accept: application/json
+
+###
+
+
+# Delete Stock Connector
+# curl --request DELETE
+#  --url http://localhost:8083/connectors/stock-events
+#  --header 'Accept: application/json'
+DELETE http://localhost:8083/connectors/stock-events
+Accept: application/json
+
+###
+

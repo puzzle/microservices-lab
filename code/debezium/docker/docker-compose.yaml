@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   order-db:
     image: quay.io/postgres/postgres:11
     hostname: order-db
@@ -16,7 +17,7 @@ services:
       - 5432:5432
 
   stock-db:
-    image: quay.io/postgres/postgres:11
+    image: quay.io/debezium/postgres:11
     hostname: stock-db
     container_name: debezium-stock-db
     volumes:
@@ -28,6 +29,20 @@ services:
       - POSTGRES_PASSWORD=1234
     ports:
       - 5433:5432
+
+  stock:
+    image: quay.io/puzzle/microservices-lab-debezium-stock:latest
+    hostname: stock
+    container_name: debezium-stock
+    ports:
+      - 8081:8080
+    networks:
+      - debezium
+    depends_on:
+      - stock-db
+    environment:
+      - QUARKUS_HTTP_PORT=8080
+      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://stock-db:5432/admin
 
   viewer:    
     image: quay.io/puzzle/microservices-lab-debezium-viewer:latest    

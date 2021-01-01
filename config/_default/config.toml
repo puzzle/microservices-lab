@@ -88,7 +88,7 @@ lab_git_repo = "https://github.com/puzzle/microservices-lab"
 lab_rawgit_repo = "https://raw.githubusercontent.com/puzzle/microservices-lab/main"
 lab_code_basedir = "/code/"
 
-solution_git_repo = "https://raw.githubusercontent.com/puzzle/microservices-mastery"
+solution_git_repo = "https://github.com/puzzle/microservices-mastery"
 solution_rawgit_repo = "https://raw.githubusercontent.com/puzzle/microservices-mastery/main"
 solution_code_basedir = "/"
 
