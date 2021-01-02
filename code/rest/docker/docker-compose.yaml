@@ -1,0 +1,91 @@
+version: '3'
+
+services:
+  monolith:
+    image: quay.io/puzzle/microservices-lab-monolith:latest
+    hostname: monolith
+    container_name: rest-monolith
+    ports:
+      - 8080:8080
+    networks:
+      - rest
+    depends_on:
+      - monolith-db
+    environment:
+      - QUARKUS_HTTP_PORT=8080
+      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:tracing:postgresql://monolith-db:5432/admin
+
+  monolith-db:
+    image: docker.io/postgres:11.9
+    hostname: monolith-db
+    container_name: rest-monolith-db
+    volumes:
+      - monolith-db-data:/var/lib/postgresql/data/
+    networks:
+      - rest
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - 5432:5432
+
+  grafana:
+    image: docker.io/grafana/grafana:7.3.3
+    hostname: grafana
+    container_name: rest-grafana
+    ports:
+      - 3000:3000
+    networks:
+      - rest
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./config/grafana/dashboards/:/opt/dashboards
+      - ./config/grafana/custom.yaml:/etc/grafana/provisioning/dashboards/custom.yaml
+      - ./config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+
+  prometheus:
+    image: quay.io/prometheus/prometheus:v2.22.2
+    hostname: prometheus
+    container_name: rest-prometheus
+    ports:
+      - 9090:9090
+    networks:
+      - rest
+    volumes:
+      - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./config/prometheus/alert.rules:/etc/prometheus/alert.rules
+
+  alertmanager:
+    image: quay.io/prometheus/alertmanager:v0.21.0
+    hostname: alertmanager
+    container_name: rest-alertmanager
+    ports:
+      - 9093:9093
+    networks:
+      - rest
+    volumes:
+      - ./config/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yml
+
+  jaeger:
+    image: quay.io/jaegertracing/all-in-one:1.21.0
+    hostname: jaeger
+    container_name: rest-jaeger
+    networks:
+      - rest
+    ports:
+      - 5775:5775/udp
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 14268:14268
+      - 16686:16686
+
+volumes:
+  monolith-db-data:
+
+networks:
+  rest:
+    driver: bridge
+    ipam:
+      driver: default

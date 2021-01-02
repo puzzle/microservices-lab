@@ -10,5 +10,6 @@
 
   <modules>
     <module>debezium/debezium-order</module>
+    <module>rest/rest-order</module>
   </modules>
 </project>

@@ -94,7 +94,7 @@ solution_code_basedir = "/"
 
 # specify folder structure
 folder_monolith = "monolith"
-folder_restful = "rest"
+folder_rest = "rest"
 folder_kafka = "kafka"
 folder_debezium = "debezium"
 
