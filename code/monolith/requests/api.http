@@ -1,0 +1,37 @@
+# curl --request GET
+#  --url http://127.0.0.1:8080/shop-orders
+GET http://127.0.0.1:8080/shop-orders
+
+###
+
+# curl --request GET
+#  --url http://127.0.0.1:8080/article-stocks
+GET http://127.0.0.1:8080/article-stocks
+
+###
+
+# curl --request POST
+#  --url http://127.0.0.1:8080/shop-orders
+#  --header 'Content-Type: application/json'
+#  --data '{
+#	"articleOrders" : [
+#		{
+#			"articleId" : 1,
+#			"amount" : 1
+#		}
+#	]
+#}'
+POST http://127.0.0.1:8080/shop-orders
+Content-Type: application/json
+
+{
+  "articleOrders": [
+    {
+      "articleId": 1,
+      "amount": 1
+    }
+  ]
+}
+
+###
+
