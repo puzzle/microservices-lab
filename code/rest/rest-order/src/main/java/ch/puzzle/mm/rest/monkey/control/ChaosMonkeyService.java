@@ -11,15 +11,9 @@ import java.util.Map;
 @ApplicationScoped
 public class ChaosMonkeyService {
 
-    private Monkey defaultMonkey = new Monkey();
-    public Map<String, Monkey> classMonkeys = new HashMap<>();
+    public Map<String, Monkey> monkeys = new HashMap<>();
 
-    private static String DEFAULT_ID = "DEFAULT";
     private static String DELIMITER = "#";
-
-    public Monkey getDefaultMonkey() {
-        return this.defaultMonkey;
-    }
 
     public Monkey getMonkey(Class<?> clazz, Method method) {
         return this.getMonkey(this.toCallerId(clazz, method));
@@ -31,33 +25,29 @@ public class ChaosMonkeyService {
 
     Monkey getMonkey(String callerId) {
         if (callerId != null) {
-            if (classMonkeys.containsKey(callerId)) {
-                return classMonkeys.get(callerId);
+            if (monkeys.containsKey(callerId)) {
+                return monkeys.get(callerId);
             } else if (callerId.contains(DELIMITER)) {
                 String clazz = callerId.split(DELIMITER)[0];
-                if (classMonkeys.containsKey(clazz)) {
-                    return classMonkeys.get(clazz);
+                if (monkeys.containsKey(clazz)) {
+                    return monkeys.get(clazz);
                 }
             }
         }
 
-        return this.defaultMonkey;
+        return new Monkey();
     }
 
-    public void addMonkey(Monkey monkey, String clazzName, String methodName) {
-        this.addMonkey(monkey, this.toCallerId(clazzName, methodName));
+    public void addMonkey(Monkey monkey) {
+        this.addMonkey(monkey, this.toCallerId(monkey.getClazzName(), monkey.getMethodName()));
     }
 
     void addMonkey(Monkey monkey, String callerId) {
-        if (monkey == null) {
+        if (monkey == null || callerId == null) {
             return;
         }
 
-        if (callerId == null) {
-            this.defaultMonkey = monkey;
-        } else {
-            this.classMonkeys.put(callerId, monkey);
-        }
+        this.monkeys.put(callerId, monkey);
     }
 
     public void removeMonkey(String clazzName, String methodName) {
@@ -65,12 +55,13 @@ public class ChaosMonkeyService {
     }
 
     public void removeMonkey(String callerId) {
-        if (callerId != null && this.classMonkeys.containsKey(callerId)) {
-            this.classMonkeys.remove(callerId);
+        if (callerId != null && this.monkeys.containsKey(callerId)) {
+            this.monkeys.remove(callerId);
         } else {
             throw new NotFoundException("Monkey '" + callerId + "' not found");
         }
     }
+
 
     String toCallerId(Class<?> clazz, Method method) {
         if (clazz == null) {
@@ -97,8 +88,6 @@ public class ChaosMonkeyService {
     }
 
     public Map<String, Monkey> getAllMonkeys() {
-        Map<String, Monkey> config = new HashMap<String, Monkey>(classMonkeys);
-        config.put(DEFAULT_ID, defaultMonkey);
-        return config;
+        return new HashMap<>(monkeys);
     }
 }

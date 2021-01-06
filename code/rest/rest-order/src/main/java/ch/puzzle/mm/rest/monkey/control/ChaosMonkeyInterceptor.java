@@ -17,20 +17,30 @@ public class ChaosMonkeyInterceptor {
     @AroundInvoke
     public Object monkey(InvocationContext context) throws Exception {
         Monkey monkey = monkeyService.getMonkey(context.getMethod().getDeclaringClass(), context.getMethod());
+        Object ret = null;
         if(monkey.isEnabled()) {
             ChaosMonkey monkeyAnnotation = context.getMethod().getAnnotation(ChaosMonkey.class);
-
-            if(monkeyAnnotation.errors()) {
-                monkey.runErrorMonkey();
+            // before invocation
+            if (monkeyAnnotation.rateLimit()) {
+                monkey.runRateLimiterMonkey();
             }
 
+            ret = context.proceed();
+
+            // after invocation
             if(monkeyAnnotation.latency()) {
                 monkey.runLatencyMonkey();
             }
 
-            if(monkeyAnnotation.rateLimit()) {
-                monkey.runRateLimiterMonkey();
+            if(monkeyAnnotation.errorRate()) {
+                monkey.runErrorMonkey();
             }
+
+            if(monkeyAnnotation.exception()) {
+                monkey.runExceptionMonkey();
+            }
+
+            return ret;
         }
 
         return context.proceed();

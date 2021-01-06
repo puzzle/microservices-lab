@@ -20,7 +20,10 @@ public class Monkey {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChaosMonkeyInterceptor.class);
 
+    private String clazzName;
+    private String methodName;
     private boolean enabled = false;
+    private boolean throwException = false;
     private double errorRate = 0.0D;
     private long latencyMs = 0L;
     private double permitsPerSec = Long.MAX_VALUE;
@@ -31,6 +34,30 @@ public class Monkey {
 
     @JsonbTransient
     private final RateLimiter rateLimiter = RateLimiter.create(permitsPerSec);
+
+    public String getClazzName() {
+        return clazzName;
+    }
+
+    public void setClazzName(String clazzName) {
+        this.clazzName = clazzName;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
+    }
+
+    public boolean isThrowException() {
+        return throwException;
+    }
+
+    public void setThrowException(boolean throwException) {
+        this.throwException = throwException;
+    }
 
     public boolean isEnabled() {
         return enabled;
@@ -85,6 +112,12 @@ public class Monkey {
                 LOG.warn(msg);
                 throw new InternalServerErrorException(msg);
             }
+        }
+    }
+
+    public void runExceptionMonkey() {
+        if (this.throwException) {
+            throw new InternalServerErrorException("Monkey created an InternalServerError");
         }
     }
 
