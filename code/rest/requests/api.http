@@ -1,0 +1,121 @@
+# curl --request GET
+#  --url http://127.0.0.1:8081/article-stocks
+GET http://127.0.0.1:8081/article-stocks
+
+###
+
+# curl --request GET
+#  --url http://127.0.0.1:8080/shop-orders
+GET http://127.0.0.1:8080/shop-orders
+
+###
+
+# curl --request POST
+#  --url http://127.0.0.1:8080/shop-orders
+#  --header 'Content-Type: application/json'
+#  --data '{
+#	"articleOrders" : [
+#		{
+#			"articleId" : 1,
+#			"amount" : 1
+#		}
+#	]
+#}'
+POST http://127.0.0.1:8080/shop-orders
+Content-Type: application/json
+
+{
+  "articleOrders": [
+    {
+      "articleId": 1,
+      "amount": 1
+    }
+  ]
+}
+
+
+###
+
+# curl --request GET
+#  --url http://127.0.0.1:8080/chaos-monkey
+GET http://127.0.0.1:8080/chaos-monkey
+
+###
+
+
+###
+
+# curl --request POST
+#  --url http://127.0.0.1:8080/chaos-monkey
+#  --header 'Content-Type: application/json'
+#  --data '[
+#	{
+#		"clazzName": "ShopOrderResource",
+#		"methodName": "createShopOrder",
+#		"enabled": true,
+#		"throwException": true
+#  }
+#]'
+POST http://127.0.0.1:8080/chaos-monkey
+Content-Type: application/json
+
+[
+  {
+    "clazzName": "ShopOrderResource",
+    "methodName": "createShopOrder",
+    "enabled": true,
+    "throwException": true
+  }
+]
+
+
+###
+
+# curl --request DELETE
+#  --url http://127.0.0.1:8080/chaos-monkey/ShopOrderResource%23createShopOrder
+#  --header 'Content-Type: application/json'
+DELETE http://127.0.0.1:8080/chaos-monkey/ShopOrderResource%23createShopOrder
+Content-Type: application/json
+
+###
+
+# curl --request GET
+#  --url http://127.0.0.1:8081/chaos-monkey
+GET http://127.0.0.1:8081/chaos-monkey
+
+###
+
+# curl --request POST
+#  --url http://127.0.0.1:8081/chaos-monkey
+#  --header 'Content-Type: application/json'
+#  --data '[
+#	{
+#		"clazzName": "ArticleStockLraResource",
+#		"methodName": "createStockOrder",
+#		"enabled": true,
+#		"throwException": true
+#  }
+#]'
+POST http://127.0.0.1:8081/chaos-monkey
+Content-Type: application/json
+
+[
+  {
+    "clazzName": "ArticleStockLraResource",
+    "methodName": "createStockOrder",
+    "enabled": true,
+    "throwException": true
+  }
+]
+
+###
+
+# curl --request DELETE
+#  --url http://127.0.0.1:8081/chaos-monkey/ArticleStockLraResource%23createStockOrder
+#  --header 'Content-Type: application/json'
+DELETE http://127.0.0.1:8081/chaos-monkey/ArticleStockLraResource%23createStockOrder
+Content-Type: application/json
+
+###
+
+
