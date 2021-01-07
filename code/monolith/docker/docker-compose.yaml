@@ -85,7 +85,7 @@ volumes:
   application-db-data:
 
 networks:
-  rest:
+  monolith:
     driver: bridge
     ipam:
       driver: default
