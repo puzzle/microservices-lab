@@ -35,3 +35,55 @@ Content-Type: application/json
 
 ###
 
+# curl --request GET
+#  --url http://127.0.0.1:8080/chaos-monkey
+GET http://127.0.0.1:8080/chaos-monkey
+
+###
+
+
+# curl --request POST
+#  --url http://127.0.0.1:8080/chaos-monkey
+#  --header 'Content-Type: application/json'
+#  --data '[
+#	{
+#    "clazzName": "ArticleStockService",
+#    "methodName": "orderArticles",
+#    "enabled": true,
+#    "errorRate": 0.0,
+#    "latencyMs": 0,
+#    "permitsPerSec": 9.223372036854776E18,
+#    "rateLimiterType": "BLOCK",
+#    "throwException": true
+#  }
+#]'
+POST http://127.0.0.1:8080/chaos-monkey
+Content-Type: application/json
+
+[
+  {
+    "clazzName": "ArticleStockService",
+    "methodName": "orderArticles",
+    "enabled": true,
+    "errorRate": 0.0,
+    "latencyMs": 0,
+    "permitsPerSec": 9.223372036854776E18,
+    "rateLimiterType": "BLOCK",
+    "throwException": true
+  }
+]
+
+###
+
+
+
+###
+
+# curl --request DELETE
+#  --url http://127.0.0.1:8080/chaos-monkey/ArticleStockService%23orderArticles
+#  --header 'Content-Type: application/json'
+DELETE http://127.0.0.1:8080/chaos-monkey/ArticleStockService%23orderArticles
+Content-Type: application/json
+
+###
+

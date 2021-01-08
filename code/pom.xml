@@ -3,10 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.puzzle</groupId>
-  <artifactId>microservice-mastery</artifactId>
+  <artifactId>microservices-code</artifactId>
   <version>0.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Microservice Mastery</name>
+  <name>Microservices Mastery</name>
 
   <modules>
     <module>debezium/debezium-order</module>
