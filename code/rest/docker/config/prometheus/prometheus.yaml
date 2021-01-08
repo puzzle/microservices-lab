@@ -1,0 +1,28 @@
+# my global config
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+       - alertmanager:9093
+
+rule_files:
+- alert.rules
+
+scrape_configs:
+  - job_name: 'prometheus'
+
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'order'
+    static_configs:
+      - targets: ['order:8080']
+
+  - job_name: 'stock'
+    static_configs:
+      - targets: [ 'stock:8080' ]

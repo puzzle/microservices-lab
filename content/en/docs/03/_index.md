@@ -6,13 +6,12 @@ sectionnumber: 3
 
 ## Introduction
 
-In the previous lab we worked on a monolithic application. In this lab we will distribute the monolith in two independent applications.
-Will split up this monolith in an `order` and `stock` microservice.
+In the previous lab we inspected the monolithic application. In this lab we will distribute the monolith in two independent microservices.
 
-Both microservices will use RESTful APIs to communicate with each other. We will see how we can build the `order` microservice
-and why data consistency may be violated.
+Both microservices will use RESTful APIs to communicate with each other. We build the `order` microservice and see why data consistency
+could be violated.
 
-In a last step we will have a look at the Microprofile Long Running Actions (LRA)[^1] and how this could help for data consistency.
+In a last step we will have a look at the MicroProfile Long Running Actions (LRA)[^1] and how this could help for data consistency.
 At the end we will see how a SAGA orchestration approach could be built using LRA.
 
 
@@ -28,13 +27,15 @@ We expect the stock count of an article to be consistent with its order count.
 Can you imagine another context which exists in the monolith?
 
 {{% details title="Hint" %}}
-Think of a rich article catalog with pictures, thumbnails and a detailed description. There is a high chance that this would be managed in another independent microservice. For simplicity our articles are fully managed by the `stock` microservice.
+Think of a rich article catalog with pictures, thumbnails and a detailed description. There is a high chance that this would be managed in another independent microservice.
 {{% /details %}}
 
 
 ## Lab Overview
 
-The first version we will only use the two microservice `order` and `stock`. In a second version we will introduce the `lra-coordinator` and our environment will look like this.
+In the first version we will use the two microservice `order` and `stock`.
+
+In a second version we will introduce the `lra-coordinator` and our environment will look like this.
 
 ![Environment](rest-lra.png)
 
