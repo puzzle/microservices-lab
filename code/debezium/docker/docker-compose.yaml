@@ -1,34 +1,16 @@
-version: '3'
-
-services:
-
-  order-db:
-    image: quay.io/postgres/postgres:11
-    hostname: order-db
-    container_name: debezium-order-db
-    volumes:
-      - debezium-order-db-data:/var/lib/postgresql/data/
-    networks:
-      - debezium
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=1234
-    ports:
-      - 5432:5432
-
-  stock-db:
-    image: quay.io/debezium/postgres:11
-    hostname: stock-db
-    container_name: debezium-stock-db
-    volumes:
-      - debezium-stock-db-data:/var/lib/postgresql/data/
-    networks:
-      - debezium
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=1234
-    ports:
-      - 5433:5432
+order:
+  image: microservices-lab-debezium-order:latest
+  hostname: order
+  container_name: debezium-order
+  ports:
+    - 8080:8080
+  networks:
+    - debezium
+  depends_on:
+    - order-db
+  environment:
+    - QUARKUS_HTTP_PORT=8080
+    - QUARKUS_DATASOURCE_JDBC_URL=jdbc:tracing:postgresql://order-db:5432/admin
 
   stock:
     image: quay.io/puzzle/microservices-lab-debezium-stock:latest
@@ -44,19 +26,47 @@ services:
       - QUARKUS_HTTP_PORT=8080
       - QUARKUS_DATASOURCE_JDBC_URL=jdbc:tracing:postgresql://stock-db:5432/admin
 
-  viewer:    
-    image: quay.io/puzzle/microservices-lab-debezium-viewer:latest    
+  order-db:
+    image: docker.io/postgres:11.9
+    hostname: order-db
+    container_name: debezium-order-db
+    volumes:
+      - debezium-order-db-data:/var/lib/postgresql/data/
+    networks:
+      - debezium
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - 5432:5432
+
+  stock-db:
+    image: docker.io/postgres:11.9
+    hostname: stock-db
+    container_name: debezium-stock-db
+    volumes:
+      - debezium-stock-db-data:/var/lib/postgresql/data/
+    networks:
+      - debezium
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - 5433:5432
+
+  viewer:
+    image: quay.io/puzzle/microservices-lab-debezium-viewer:latest
     hostname: viewer
     container_name: debezium-viewer
-    ports:    
+    ports:
       - 8082:8080
-    networks:    
+    networks:
       - debezium
-    depends_on:    
+    depends_on:
       - kafka
       - connect
-    environment:    
-      - QUARKUS_HTTP_PORT=8080    
+    environment:
+      - QUARKUS_HTTP_PORT=8080
 
   zookeeper:
     image: quay.io/debezium/zookeeper:1.4
@@ -65,22 +75,22 @@ services:
     networks:
       - debezium
     ports:
-     - 2181:2181
-     - 2888:2888
-     - 3888:3888
+      - 2181:2181
+      - 2888:2888
+      - 3888:3888
 
   kafka:
     image: quay.io/puzzle/microservices-lab-debezium-kafka:latest
     hostname: kafka
     container_name: debezium-kafka
     ports:
-     - 9092:9092
+      - 9092:9092
     networks:
       - debezium
     depends_on:
-     - zookeeper
+      - zookeeper
     environment:
-     - ZOOKEEPER_CONNECT=zookeeper:2181
+      - ZOOKEEPER_CONNECT=zookeeper:2181
 
   grafana:
     image: docker.io/grafana/grafana:7.3.6

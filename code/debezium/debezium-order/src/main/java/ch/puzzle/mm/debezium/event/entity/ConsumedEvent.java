@@ -7,7 +7,34 @@ import javax.persistence.Id;
 import java.time.Instant;
 import java.util.UUID;
 
-public class ConsumedEvent {
+@Entity
+public class ConsumedEvent extends PanacheEntityBase {
 
-    // TODO: implementation
+    @Id
+    UUID id;
+    Instant received;
+
+    public ConsumedEvent() {
+    }
+
+    public ConsumedEvent(UUID id, Instant received) {
+        this.id = id;
+        this.received = received;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID eventId) {
+        this.id = eventId;
+    }
+
+    public Instant getReceived() {
+        return received;
+    }
+
+    public void setReceived(Instant received) {
+        this.received = received;
+    }
 }
