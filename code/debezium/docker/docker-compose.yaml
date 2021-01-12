@@ -1,16 +1,19 @@
-order:
-  image: microservices-lab-debezium-order:latest
-  hostname: order
-  container_name: debezium-order
-  ports:
-    - 8080:8080
-  networks:
-    - debezium
-  depends_on:
-    - order-db
-  environment:
-    - QUARKUS_HTTP_PORT=8080
-    - QUARKUS_DATASOURCE_JDBC_URL=jdbc:tracing:postgresql://order-db:5432/admin
+version: '3'
+
+services:
+  order:
+    image: microservices-lab-debezium-order:latest
+    hostname: order
+    container_name: debezium-order
+    ports:
+      - 8080:8080
+    networks:
+      - debezium
+    depends_on:
+      - order-db
+    environment:
+      - QUARKUS_HTTP_PORT=8080
+      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:tracing:postgresql://order-db:5432/admin
 
   stock:
     image: quay.io/puzzle/microservices-lab-debezium-stock:latest

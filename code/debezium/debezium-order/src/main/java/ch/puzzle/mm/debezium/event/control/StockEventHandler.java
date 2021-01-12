@@ -28,7 +28,7 @@ public class StockEventHandler {
     ShopOrderService shopOrderService;
 
     @Counted(name = "debezium_order_stockevent_total", absolute = true, description = "number of events from stock", tags = {"application=debezium-order", "resource=StockEventHandler"})
-    @Timed(name = "debezium_order_stockevent_timed", description = "timer for processing a stock event", tags = {"application=debezium-order", "resource=StockEventHandler"})
+    @Timed(name = "debezium_order_stockevent_timed", absolute = true, description = "timer for processing a stock event", tags = {"application=debezium-order", "resource=StockEventHandler"})
     @Transactional
     public void onStockEvent(UUID eventId, String eventType, String key, String event, Instant ts) {
         // TODO: implementation - check eventLog (alreadyProcessed)

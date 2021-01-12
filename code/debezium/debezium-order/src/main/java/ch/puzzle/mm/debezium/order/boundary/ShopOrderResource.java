@@ -43,7 +43,7 @@ public class ShopOrderResource {
     @POST
     @Transactional
     @Counted(name = "debezium_order_create_request", absolute = true, description = "number of orders requested", tags = {"application=debezium-order", "resource=ShopOrderResource"})
-    @Timed(name = "debezium_order_create_timed", description = "timer for processing a order creation", tags = {"application=debezium-order", "resource=ShopOrderResource"})
+    @Timed(name = "debezium_order_create_timed", absolute = true, description = "timer for processing a order creation", tags = {"application=debezium-order", "resource=ShopOrderResource"})
     public Response create(ShopOrderDTO shopOrderDTO) {
         ShopOrder shopOrder = shopOrderService.createOrder(shopOrderDTO);
         return Response.ok(shopOrder).build();
@@ -53,7 +53,7 @@ public class ShopOrderResource {
     @Path("/{orderId}/status")
     @Transactional
     @Counted(name = "debezium_order_cancel_request", absolute = true, description = "number of orders cancellations", tags = {"application=debezium-order", "resource=ShopOrderResource"})
-    @Timed(name = "debezium_order_cancel_timed", description = "timer for processing a order cancellation", tags = {"application=debezium-order", "resource=ShopOrderResource"})
+    @Timed(name = "debezium_order_cancel_timed", absolute = true, description = "timer for processing a order cancellation", tags = {"application=debezium-order", "resource=ShopOrderResource"})
     public Response cancel(@PathParam("orderId") long orderId, ShopOrderStatusDto status) {
         if (status == null || status.status != ShopOrderStatus.CANCELLED) {
             throw new IllegalStateException("Failed to change status of order " + orderId);
