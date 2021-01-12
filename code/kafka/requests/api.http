@@ -1,0 +1,33 @@
+# curl --request POST
+#  --url http://localhost:8080/shop-orders
+#  --header 'Content-Type: application/json'
+#  --data '{
+#  "articleOrders": [
+#    {
+#      "articleId": 1,
+#      "amount": 2
+#    },
+#    {
+#      "articleId": 2,
+#      "amount": 3
+#    }
+#  ]
+#}'
+POST http://localhost:8080/shop-orders
+Content-Type: application/json
+
+{
+  "articleOrders": [
+    {
+      "articleId": 1,
+      "amount": 2
+    },
+    {
+      "articleId": 2,
+      "amount": 3
+    }
+  ]
+}
+
+###
+

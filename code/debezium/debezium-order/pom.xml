@@ -108,8 +108,6 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>generate-code</goal>
-                            <goal>generate-code-tests</goal>
                             <goal>build</goal>
                         </goals>
                     </execution>
