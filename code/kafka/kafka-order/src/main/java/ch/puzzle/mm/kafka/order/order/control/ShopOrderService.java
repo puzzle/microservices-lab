@@ -36,22 +36,8 @@ public class ShopOrderService {
         shopOrderDTO.id = shopOrder.id;
 
         // fire event
-        shopOrderRequestProducer.createRequest(shopOrderDTO);
+        // REPLACE ME: Here used to live a REST-call
 
         return shopOrder;
-    }
-
-    @Transactional
-    public void compensateOrder(Long id) {
-        ShopOrder shopOrder = ShopOrder.findById(id);
-        shopOrder.setStatus(ShopOrderStatus.INCOMPLETE);
-        shopOrder.persistAndFlush();
-    }
-
-    @Transactional
-    public void confirmOrder(Long id) {
-        ShopOrder shopOrder = ShopOrder.findById(id);
-        shopOrder.setStatus(ShopOrderStatus.COMPLETED);
-        shopOrder.persistAndFlush();
     }
 }
