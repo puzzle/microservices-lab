@@ -9,6 +9,7 @@
   <name>Microservices Mastery</name>
 
   <modules>
+    <module>monolith/monolith-application</module>
     <module>debezium/debezium-order</module>
     <module>rest/rest-order</module>
     <module>kafka/kafka-order</module>

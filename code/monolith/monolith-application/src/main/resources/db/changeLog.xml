@@ -1,0 +1,68 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="main" id="1">
+        <createTable tableName="article">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="price" type="double"/>
+        </createTable>
+
+        <createTable tableName="shoporder">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="status" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="articleorder">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="articleid" type="bigint"/>
+            <column name="amount" type="number"/>
+        </createTable>
+
+        <createTable tableName="shoporder_articleorder">
+            <column name="shoporder_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="shoporder_article_shoporder_fk" referencedColumnNames="id"/>
+            </column>
+            <column name="articleorders_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="shoporder_article_articleorder_fk" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+        
+        <createTable tableName="articlestock">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="article_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="articlestock_article_fk" referencedColumnNames="id"/>
+            </column>
+            <column name="count" type="int"/>
+        </createTable>
+
+        <createSequence sequenceName="hibernate_sequence" startValue="100000"/>
+
+        <sql>
+            insert into article (id, name, price) values (1, 'Article 1', 12.99);
+            insert into article (id, name, price) values (2, 'Article 2', 1.99);
+            insert into article (id, name, price) values (3, 'Article 3', 2.99);
+            insert into article (id, name, price) values (4, 'Article 4', 122.99);
+
+            insert into articlestock (id, article_id, count) values (1, 1, 10);
+            insert into articlestock (id, article_id, count) values (2, 2, 10);
+            insert into articlestock (id, article_id, count) values (3, 3, 10);
+            insert into articlestock (id, article_id, count) values (4, 4, 10);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
+
