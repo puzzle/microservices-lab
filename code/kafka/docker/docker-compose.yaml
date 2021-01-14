@@ -14,7 +14,7 @@ services:
       - 5432:5432
 
   order:
-    image: quay.io/puzzle/microservices-lab-kafka-order:latest
+    image: kafka-order:latest
     ports:
       - 8080:8080
     networks:
