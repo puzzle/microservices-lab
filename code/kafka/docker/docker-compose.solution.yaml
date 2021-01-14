@@ -122,7 +122,7 @@ services:
       - 16686:16686
 
   viewer:
-    image: quay.io/puzzle/microservices-lab-debezium-viewer:latest
+    image: quay.io/puzzle/microservices_lab_kafka_viewer:latest
     ports:
       - 8082:8080
     networks:
@@ -131,6 +131,9 @@ services:
       - kafka
     environment:
       - QUARKUS_HTTP_PORT=8080
+      - MP_MESSAGING_INCOMING_KAFKAMESSAGES_TOPICS=shop-order-request,shop-order-confirmation,shop-order-compensation
+      - MP_MESSAGING_INCOMING_KAFKAMESSAGES_KEY_DESERIALIZER=org.apache.kafka.common.serialization.StringDeserializer
+      - MP_MESSAGING_INCOMING_KAFKAMESSAGES_VALUE_DESERIALIZER=org.apache.kafka.common.serialization.StringDeserializer
 
 volumes:
   order-db-data:
