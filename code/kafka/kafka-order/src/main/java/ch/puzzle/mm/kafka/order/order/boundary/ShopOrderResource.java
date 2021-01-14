@@ -22,10 +22,6 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ShopOrderResource {
 
-    private final Logger log = LoggerFactory.getLogger(ShopOrderResource.class.getName());
-
-    private static int successfulOrders = 0;
-
     @Inject
     ShopOrderService shopOrderService;
 
