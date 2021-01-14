@@ -53,30 +53,6 @@ services:
       - QUARKUS_DATASOURCE_JDBC_URL=jdbc:tracing:postgresql://stock-db:5432/admin
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
-  zookeeper:
-    image: quay.io/debezium/zookeeper:1.4
-    hostname: zookeeper
-    container_name: debezium-zookeeper
-    networks:
-      - kafka
-    ports:
-      - 2181:2181
-      - 2888:2888
-      - 3888:3888
-
-  kafka:
-    image: quay.io/puzzle/microservices-lab-debezium-kafka:latest
-    hostname: kafka
-    container_name: debezium-kafka
-    ports:
-      - 9092:9092
-    networks:
-      - kafka
-    depends_on:
-      - zookeeper
-    environment:
-      - ZOOKEEPER_CONNECT=zookeeper:2181
-
   grafana:
     image: grafana/grafana:7.3.3
     ports:
