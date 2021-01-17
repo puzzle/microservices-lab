@@ -14,3 +14,9 @@ public
 .vscode
 *.iml
 target
+
+# eclipse
+.classpath
+.project
+.settings/
+
