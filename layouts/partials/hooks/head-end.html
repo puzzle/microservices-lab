@@ -1,2 +1,4 @@
 {{ $codeCopy := resources.Get "css/code-copy.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $codeCopy.RelPermalink }}">
+{{ $alertStyle := resources.Get "css/alert-styles.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $alertStyle.RelPermalink }}">

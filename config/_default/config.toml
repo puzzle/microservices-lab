@@ -103,6 +103,10 @@ puzzle_docker_repo = "quay.io/puzzle"
 image_prefix = "microservices-lab-"
 debezium_docker_repo = "quay.io/debezium"
 
+# Lab Duration
+labDuration = "unlimited"
+four-hours-text = "Since the time for the labs is limited this step has already been implemented in your version. Feel free to read it for better understanding but you may also skip it."
+
 [params.ui]
 # Enable to show the side bar menu in its compact state.
 sidebar_menu_compact = false

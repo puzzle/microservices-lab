@@ -1,0 +1,13 @@
+.alert-duration {
+    background-color: #fff3df;
+}
+
+.alert-duration {
+    border-style: solid;
+    border-color: #ffa500;
+    border-width: 0 0 0 4px;
+}
+
+.alert-duration .alert-heading {
+    color: #c98400;
+}
