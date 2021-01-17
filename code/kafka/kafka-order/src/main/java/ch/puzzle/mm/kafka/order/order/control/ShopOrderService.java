@@ -4,7 +4,6 @@ import ch.puzzle.mm.kafka.order.order.entity.ArticleOrder;
 import ch.puzzle.mm.kafka.order.order.entity.ShopOrder;
 import ch.puzzle.mm.kafka.order.order.entity.ShopOrderDTO;
 import ch.puzzle.mm.kafka.order.order.entity.ShopOrderStatus;
-import ch.puzzle.mm.kafka.order.order.boundary.ShopOrderRequestProducer;
 import org.eclipse.microprofile.opentracing.Traced;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -16,9 +15,6 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 @Traced
 public class ShopOrderService {
-
-    @Inject
-    ShopOrderRequestProducer shopOrderRequestProducer;
 
     public List<ShopOrder> listAll() {
         return ShopOrder.listAll();

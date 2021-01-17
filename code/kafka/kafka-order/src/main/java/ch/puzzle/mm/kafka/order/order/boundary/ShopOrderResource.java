@@ -22,10 +22,6 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ShopOrderResource {
 
-    private final Logger log = LoggerFactory.getLogger(ShopOrderResource.class.getName());
-
-    private static int successfulOrders = 0;
-
     @Inject
     ShopOrderService shopOrderService;
 
@@ -36,17 +32,11 @@ public class ShopOrderResource {
 
     @POST
     @Transactional
-    @Counted(name = "rest_order_create_request", absolute = true, description = "number of orders requested", tags = {"application=rest-order", "resource=ShopOrderResource"})
-    @Timed(name = "rest_order_create_timer", description = "timer for processing a order creation", tags = {"application=rest-order", "resource=ShopOrderResource"})
+    @Counted(name = "kafka_order_create_request", absolute = true, description = "number of orders requested", tags = {"application=kafka-order", "resource=ShopOrderResource"})
+    @Timed(name = "kafka_order_create_timer", description = "timer for processing a order creation", tags = {"application=kafka-order", "resource=ShopOrderResource"})
     public Response createShopOrder(ShopOrderDTO shopOrderDTO) {
         ShopOrder shopOrder = shopOrderService.createOrder(shopOrderDTO);
         shopOrder.persist();
-        registerSuccessfulOrder();
         return Response.ok(shopOrder).build();
-    }
-
-    @Counted(name = "rest_order_create_success", absolute = true, description = "number of orders successful", tags = {"application=rest-order", "resource=ShopOrderResource"})
-    public int registerSuccessfulOrder() {
-        return successfulOrders++;
     }
 }
