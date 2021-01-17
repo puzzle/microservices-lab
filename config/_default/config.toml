@@ -104,7 +104,7 @@ image_prefix = "microservices-lab-"
 debezium_docker_repo = "quay.io/debezium"
 
 # Lab Duration
-labDuration = "unlimited"
+labDuration = "four-hours"
 four-hours-text = "Since the time for the labs is limited this step has already been implemented in your version. Feel free to read it for better understanding but you may also skip it."
 
 [params.ui]
