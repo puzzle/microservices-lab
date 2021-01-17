@@ -32,8 +32,40 @@
         <createSequence sequenceName="hibernate_sequence" startValue="100000"/>
 
         <!-- Add outboxevent table here -->
+        <createTable tableName="outboxevent">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="aggregatetype" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aggregateid" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tracingspancontext" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="payload" type="text">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
 
         <!-- add consumedevent table here -->
+        <createTable tableName="consumedevent">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="received" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
     </changeSet>
 </databaseChangeLog>
 

@@ -105,7 +105,7 @@ debezium_docker_repo = "quay.io/debezium"
 
 # Lab Duration
 labDuration = "four-hours"
-four-hours-text = "Since the time for the labs is limited this step has already been implemented in your version. Feel free to read it for better understanding but you may also skip it."
+four-hours-text = "Since the time for the labs is limited this step has already been implemented in your version. For a better understanding we encourage you to have a quick read but you may also skip it."
 
 [params.ui]
 # Enable to show the side bar menu in its compact state.

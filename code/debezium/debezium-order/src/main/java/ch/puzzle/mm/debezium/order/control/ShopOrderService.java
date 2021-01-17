@@ -1,7 +1,6 @@
 package ch.puzzle.mm.debezium.order.control;
 
 import ch.puzzle.mm.debezium.event.entity.OrderCancelledEvent;
-import ch.puzzle.mm.debezium.event.entity.OrderCreatedEvent;
 import ch.puzzle.mm.debezium.order.entity.*;
 import io.debezium.outbox.quarkus.ExportedEvent;
 import org.eclipse.microprofile.metrics.annotation.Counted;
@@ -17,6 +16,9 @@ import java.util.stream.Collectors;
 @Traced
 @ApplicationScoped
 public class ShopOrderService {
+
+    @Inject
+    Event<ExportedEvent<?, ?>> event;
 
     public List<ShopOrder> listAll() {
         return ShopOrder.listAll();
@@ -44,7 +46,8 @@ public class ShopOrderService {
     public ShopOrder cancelOrder(long orderId) {
         ShopOrder order = ShopOrder.getByIdOrThrow(orderId);
         if (order.getStatus().canCancel()) {
-            // TODO: implementation - set state, fire cancelled event
+            order.setStatus(ShopOrderStatus.CANCELLED);
+            event.fire(new OrderCancelledEvent(Instant.now(), order));
             return order;
         } else {
             throw new IllegalStateException("Cannot cancel Order " + orderId);
