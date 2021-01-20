@@ -5,6 +5,8 @@ Microservices Lab Description
 
 ## Build LABs using Docker
 
+To build and run for example the monolith lab use the following steps.
+
 Build monolith application image:
 
 ```bash
@@ -16,7 +18,15 @@ Run monolith lab locally:
 
 ```bash
 cd code/monolith/docker
-docker-compose 
+docker-compose down --remove-orphans
+docker-compose up -d 
+```
+
+Running the solution of the monolith lab:
+```bash
+cd code/monolith/docker
+docker-compose down --remove-orphans
+docker-compose -f docker-compose.solution.yaml up -d 
 ```
 
 ## Using the lab website container
