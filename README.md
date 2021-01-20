@@ -3,14 +3,31 @@
 Microservices Lab Description
 
 
-## Content Sections
+## Build LABs using Docker
+
+Build monolith application image:
+
+```bash
+cd code/monolith
+docker build -f monolith-application/src/main/docker/Dockerfile.multistage.jvm -t microservices-lab-monolith-application:latest monolith-application
+```
+
+Run monolith lab locally:
+
+```bash
+cd code/monolith/docker
+docker-compose 
+```
+
+## Using the lab website container
+### Content Sections
 
 The training content resides within the [content](content) directory.
 
 The main part are the labs, which can be found at [content/en/docs](content/en/docs).
 
 
-## Hugo
+### Hugo
 
 This site is built using the static page generator [Hugo](https://gohugo.io/).
 
@@ -29,13 +46,13 @@ The default configuration uses the puzzle setup from [config/_default](config/_d
 Further, specialized environments can be added in the `config` directory.
 
 
-### Docsy theme usage
+#### Docsy theme usage
 
 * [Official docsy documentation](https://www.docsy.dev/docs/)
 * [Docsy Plus](https://github.com/puzzle/docsy-plus/)
 
 
-### Update submodules for theme updates
+#### Update submodules for theme updates
 
 Run the following command to update all submodules with their newest upstream version:
 
@@ -44,7 +61,7 @@ git submodule update --remote
 ```
 
 
-## Build using Docker
+### Build hugo website container using Docker
 
 Build the image:
 
@@ -59,7 +76,7 @@ docker run -i -p 8080:8080 puzzle/microservices-lab
 ```
 
 
-### Using Buildah and Podman
+#### Using Buildah and Podman
 
 Build the image:
 
@@ -74,7 +91,7 @@ podman run --rm --rmi --interactive --publish 8080:8080 localhost/puzzle/microse
 ```
 
 
-## How to develop locally
+### How to develop locally
 
 To develop locally we don't want to rebuild the entire container image every time something changed, and it is also important to use the same hugo versions like in production.
 We simply mount the working directory into a running container, where hugo is started in the server mode.
@@ -90,7 +107,7 @@ docker run \
 ```
 
 
-## Linting of Markdown content
+### Linting of Markdown content
 
 Markdown files are linted with [markdownlint](https://github.com/DavidAnson/markdownlint).
 Custom rules are in [markdownlint.json](markdownlint.json).
@@ -103,6 +120,6 @@ node_modules/.bin/markdownlint content
 ```
 
 
-## Contributions
+### Contributions
 
 If you find errors, bugs or missing information, please help us improve and have a look at the [Contribution Guide](CONTRIBUTING.md).
