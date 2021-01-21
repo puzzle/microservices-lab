@@ -19,17 +19,20 @@ Run monolith lab locally:
 ```bash
 cd code/monolith/docker
 docker-compose down --remove-orphans
-docker-compose up -d 
+docker-compose up -d
 ```
 
 Running the solution of the monolith lab:
 ```bash
 cd code/monolith/docker
 docker-compose down --remove-orphans
-docker-compose -f docker-compose.solution.yaml up -d 
+docker-compose -f docker-compose.solution.yaml up -d
 ```
 
+
 ## Using the lab website container
+
+
 ### Content Sections
 
 The training content resides within the [content](content) directory.
