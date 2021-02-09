@@ -1,4 +1,4 @@
-name: main-publish
+name: Publish Main Version
 
 on:
   push:
@@ -14,6 +14,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
+      - 
+        name: Lint Markdown
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          files: "content *.md"
+          config_file: ".markdownlint.json"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -36,3 +42,28 @@ jobs:
           push: true
           tags: |
             quay.io/puzzle/microservices-lab:latest
+      - 
+        name: 'Deploy'
+        uses: 'deliverybot/helm@v1'
+        with:
+          release: 'latest'
+          namespace: 'pitc-microservices-lab-prod'
+          version: '${{ github.sha }}'
+          repository: 'https://acend.github.io/helm-charts/'
+          chart: 'acend-training-chart'
+          token: '${{ github.token }}'
+          helm: 'helm3'
+          value-files: |
+            [
+              "helm-chart/values.yaml"
+            ]
+
+        env:
+          KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+      - 
+        name: redeploy puzzle deployment
+        uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBECONFIG_BASE64 }}
+        with:
+          args: rollout restart deployment/latest-microservices-lab-puzzle --namespace pitc-microservices-lab-prod
