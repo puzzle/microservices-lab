@@ -37,7 +37,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: false
+          push: true
           tags: |
             quay.io/puzzle/microservices-lab:pr-${{ github.event.pull_request.number }}
       - 
