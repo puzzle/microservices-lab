@@ -109,7 +109,7 @@ services:
       - QUARKUS_HTTP_PORT=8080
 
   zookeeper:
-    image: quay.io/debezium/zookeeper:1.4
+    image: quay.io/debezium/zookeeper:1.5
     hostname: zookeeper
     container_name: debezium-zookeeper
     networks:

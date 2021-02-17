@@ -54,7 +54,7 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   zookeeper:
-    image: quay.io/debezium/zookeeper:1.4
+    image: quay.io/debezium/zookeeper:1.5
     hostname: zookeeper
     container_name: debezium-zookeeper
     networks:
