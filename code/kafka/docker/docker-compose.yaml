@@ -54,7 +54,7 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   grafana:
-    image: grafana/grafana:7.3.3
+    image: grafana/grafana:7.4.2
     ports:
       - 3000:3000
     networks:
