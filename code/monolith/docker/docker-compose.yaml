@@ -30,7 +30,7 @@ services:
       - 5432:5432
 
   grafana:
-    image: docker.io/grafana/grafana:7.3.3
+    image: docker.io/grafana/grafana:7.4.2
     hostname: grafana
     container_name: monolith-grafana
     ports:
