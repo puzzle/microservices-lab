@@ -18,7 +18,7 @@
         <quarkus-plugin.version>1.10.5.Final</quarkus-plugin.version>
         <quarkus.platform.version>1.10.5.Final</quarkus.platform.version>
         <debezium.version>1.4.0.CR1</debezium.version>
-        <surefire-plugin.version>2.22.0</surefire-plugin.version>
+        <surefire-plugin.version>2.22.2</surefire-plugin.version>
     </properties>
 
     <dependencyManagement>
