@@ -91,7 +91,7 @@ services:
       - ./config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
   prometheus:
-    image: prom/prometheus:v2.22.2
+    image: prom/prometheus:v2.25.0
     ports:
       - 9090:9090
     networks:
