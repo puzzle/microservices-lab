@@ -133,7 +133,7 @@ services:
       - ZOOKEEPER_CONNECT=zookeeper:2181
 
   grafana:
-    image: docker.io/grafana/grafana:7.4.2
+    image: docker.io/grafana/grafana:7.4.3
     hostname: grafana
     container_name: debezium-grafana
     ports:
