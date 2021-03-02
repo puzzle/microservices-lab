@@ -110,7 +110,7 @@ services:
       - ./config/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yml
 
   jaeger:
-    image: jaegertracing/all-in-one:1.21.0
+    image: jaegertracing/all-in-one:1.22.0
     networks:
       - kafka
     ports:
