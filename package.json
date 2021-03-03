@@ -1,6 +1,11 @@
 {
   "name": "microservices-training",
+  "scripts": {
+    "mdlint": "markdownlint --config .markdownlint.json content *.md",
+    "prepare": "husky install"
+  },
   "devDependencies": {
+    "husky": "5.1.3",
     "markdownlint-cli": "0.27.1"
   }
 }
