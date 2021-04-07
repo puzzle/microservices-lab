@@ -78,7 +78,7 @@ services:
       - 5433:5432
 
   grafana:
-    image: docker.io/grafana/grafana:7.4.3
+    image: docker.io/grafana/grafana:7.5.3
     hostname: grafana
     container_name: rest-grafana
     ports:
