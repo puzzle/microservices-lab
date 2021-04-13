@@ -78,7 +78,7 @@ services:
       - 5433:5432
 
   grafana:
-    image: docker.io/grafana/grafana:7.4.3
+    image: docker.io/grafana/grafana:latest
     hostname: grafana
     container_name: rest-grafana
     ports:
@@ -93,7 +93,7 @@ services:
       - ./config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
   prometheus:
-    image: quay.io/prometheus/prometheus:v2.25.0
+    image: quay.io/prometheus/prometheus:latest
     hostname: prometheus
     container_name: rest-prometheus
     ports:
@@ -105,7 +105,7 @@ services:
       - ./config/prometheus/alert.rules:/etc/prometheus/alert.rules
 
   alertmanager:
-    image: quay.io/prometheus/alertmanager:v0.21.0
+    image: quay.io/prometheus/alertmanager:latest
     hostname: alertmanager
     container_name: rest-alertmanager
     ports:

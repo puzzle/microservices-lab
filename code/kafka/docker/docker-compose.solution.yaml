@@ -78,7 +78,7 @@ services:
       - ZOOKEEPER_CONNECT=zookeeper:2181
 
   grafana:
-    image: grafana/grafana:7.4.3
+    image: grafana/grafana:latest
     ports:
       - 3000:3000
     networks:
@@ -91,7 +91,7 @@ services:
       - ./config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
   prometheus:
-    image: prom/prometheus:v2.25.0
+    image: prom/prometheus:latest
     ports:
       - 9090:9090
     networks:
@@ -101,7 +101,7 @@ services:
       - ./config/prometheus/alert.rules:/etc/prometheus/alert.rules
 
   alertmanager:
-    image: prom/alertmanager:v0.21.0
+    image: prom/alertmanager:latest
     ports:
       - 9093:9093
     networks:
