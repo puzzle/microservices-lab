@@ -67,7 +67,7 @@ services:
       - STRIMZI_TRACING=jaeger
 
   order-db:
-    image: quay.io/debezium/postgres:11
+    image: quay.io/debezium/postgres:13
     hostname: order-db
     container_name: debezium-order-db
     volumes:
@@ -81,7 +81,7 @@ services:
       - 5432:5432
 
   stock-db:
-    image: quay.io/debezium/postgres:11
+    image: quay.io/debezium/postgres:13
     hostname: stock-db
     container_name: debezium-stock-db
     volumes:
