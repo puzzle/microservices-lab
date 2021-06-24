@@ -50,7 +50,7 @@ services:
       - JAVA_TOOL_OPTIONS=-Dlra.http.host=lra-coordinator -Dlra.http.port=8080
 
   order-db:
-    image: docker.io/postgres:11.11
+    image: docker.io/postgres:13.3
     hostname: order-db
     container_name: rest-order-db
     volumes:
@@ -64,7 +64,7 @@ services:
       - 5432:5432
 
   stock-db:
-    image: docker.io/postgres:11.11
+    image: docker.io/postgres:13.3
     hostname: stock-db
     container_name: rest-stock-db
     volumes:

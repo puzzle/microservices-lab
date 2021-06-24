@@ -16,7 +16,7 @@ services:
       - QUARKUS_DATASOURCE_JDBC_URL=jdbc:tracing:postgresql://application-db:5432/admin
 
   application-db:
-    image: docker.io/postgres:11.11
+    image: docker.io/postgres:13.3
     hostname: application-db
     container_name: monolith-application-db
     volumes:
