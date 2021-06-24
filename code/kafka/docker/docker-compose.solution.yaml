@@ -2,7 +2,7 @@ version: '3'
 
 services:
   order-db:
-    image: postgres:11.11
+    image: postgres:11.12
     volumes:
       - order-db-data:/var/lib/postgresql/data/
     networks:
@@ -28,7 +28,7 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   stock-db:
-    image: postgres:11.11
+    image: postgres:11.12
     volumes:
       - stock-db-data:/var/lib/postgresql/data/
     networks:
