@@ -6,6 +6,6 @@
   },
   "devDependencies": {
     "husky": "6.0.0",
-    "markdownlint-cli": "0.27.1"
+    "markdownlint-cli": "0.28.1"
   }
 }
