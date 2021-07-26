@@ -20,7 +20,7 @@
     <quarkus.platform.version>1.13.3.Final</quarkus.platform.version>
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
     <guava.version>30.1.1-jre</guava.version>
-    <narayana-lra.version>5.10.6.Final</narayana-lra.version>
+    <narayana-lra.version>5.12.0.Final</narayana-lra.version>
   </properties>
 
   <dependencyManagement>
@@ -85,7 +85,7 @@
     <dependency>
       <groupId>org.eclipse.microprofile.lra</groupId>
       <artifactId>microprofile-lra-api</artifactId>
-      <version>1.0-RC3</version>
+      <version>1.0</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.rts</groupId>

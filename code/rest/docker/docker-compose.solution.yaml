@@ -2,7 +2,7 @@ version: '3'
 
 services:
   lra-coordinator:
-    image: docker.io/jbosstm/lra-coordinator:5.10.6.Final
+    image: docker.io/jbosstm/lra-coordinator:5.12.0.Final
     hostname: lra-coordinator
     container_name: rest-lra-coordinator
     volumes:
