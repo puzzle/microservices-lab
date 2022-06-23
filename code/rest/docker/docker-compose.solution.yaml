@@ -116,7 +116,7 @@ services:
       - ./config/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yml
 
   jaeger:
-    image: quay.io/jaegertracing/all-in-one:1.24.0
+    image: quay.io/jaegertracing/all-in-one:1.35.2
     hostname: jaeger
     container_name: rest-jaeger
     networks:
