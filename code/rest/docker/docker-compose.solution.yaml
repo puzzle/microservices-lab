@@ -2,7 +2,7 @@ version: '3'
 
 services:
   lra-coordinator:
-    image: docker.io/jbosstm/lra-coordinator:5.12.0.Final
+    image: quay.io/jbosstm/lra-coordinator:latest
     hostname: lra-coordinator
     container_name: rest-lra-coordinator
     volumes:
@@ -15,7 +15,7 @@ services:
       - THORNTAIL_LOGGING_ROOT-LOGGER.LEVEL=DEBUG
 
   order:
-    image: quay.io/puzzle/microservices-lab-rest-order:latest
+    image: quay.io/puzzle/microservices-lab-rest-order:2.16.6
     hostname: order
     container_name: rest-order
     ports:
@@ -88,9 +88,9 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - ./config/grafana/dashboards/:/opt/dashboards
-      - ./config/grafana/custom.yaml:/etc/grafana/provisioning/dashboards/custom.yaml
-      - ./config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+      - ./config/grafana/dashboards/:/opt/dashboards:z
+      - ./config/grafana/custom.yaml:/etc/grafana/provisioning/dashboards/custom.yaml:z
+      - ./config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:z
 
   prometheus:
     image: quay.io/prometheus/prometheus:latest
@@ -101,8 +101,8 @@ services:
     networks:
       - rest
     volumes:
-      - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
-      - ./config/prometheus/alert.rules:/etc/prometheus/alert.rules
+      - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml:z
+      - ./config/prometheus/alert.rules:/etc/prometheus/alert.rules:z
 
   alertmanager:
     image: quay.io/prometheus/alertmanager:latest
@@ -113,7 +113,7 @@ services:
     networks:
       - rest
     volumes:
-      - ./config/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yml
+      - ./config/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yml:z
 
   jaeger:
     image: quay.io/jaegertracing/all-in-one:1.24.0

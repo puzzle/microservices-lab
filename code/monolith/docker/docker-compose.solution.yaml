@@ -2,7 +2,7 @@ version: '3'
 
 services:
   application:
-    image: quay.io/puzzle/microservices-lab-monolith-application:latest
+    image: quay.io/puzzle/microservices-lab-monolith-application:2.16.6
     hostname: monolith
     container_name: monolith-application
     ports:
@@ -20,7 +20,7 @@ services:
     hostname: application-db
     container_name: monolith-application-db
     volumes:
-      - application-db-data:/var/lib/postgresql/data/
+      - application-db-data:/var/lib/postgresql/data/:z
     networks:
       - monolith
     environment:
@@ -40,9 +40,9 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - ./config/grafana/dashboards/:/opt/dashboards
-      - ./config/grafana/custom.yaml:/etc/grafana/provisioning/dashboards/custom.yaml
-      - ./config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+      - ./config/grafana/dashboards/:/opt/dashboards:z
+      - ./config/grafana/custom.yaml:/etc/grafana/provisioning/dashboards/custom.yaml:z
+      - ./config/grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:z
 
   prometheus:
     image: quay.io/prometheus/prometheus:latest
@@ -53,8 +53,8 @@ services:
     networks:
       - monolith
     volumes:
-      - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
-      - ./config/prometheus/alert.rules:/etc/prometheus/alert.rules
+      - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml:z
+      - ./config/prometheus/alert.rules:/etc/prometheus/alert.rules:z
 
   alertmanager:
     image: quay.io/prometheus/alertmanager:latest
@@ -65,7 +65,7 @@ services:
     networks:
       - monolith
     volumes:
-      - ./config/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yml
+      - ./config/alertmanager/alertmanager.yaml:/etc/alertmanager/alertmanager.yml:z
 
   jaeger:
     image: quay.io/jaegertracing/all-in-one:1.24.0

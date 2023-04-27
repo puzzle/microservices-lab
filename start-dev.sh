@@ -7,7 +7,7 @@ docker run \
   --rm --interactive \
   --publish 8095:8095 \
   --name hugo-dev \
-  -v $(pwd):/src \
+  -v $(pwd):/src:Z \
   klakegg/hugo:${HUGO_VERSION} \
   server -p 8095 --bind 0.0.0.0
 
